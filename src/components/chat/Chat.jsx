@@ -27,7 +27,66 @@ const Chat = () => {
           <img src="./info.png" alt="" />
         </div>
       </div>
-      <div className="center">center</div>
+      <div className="center">
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum iusto dolorum placeat molestiae laborum qui
+              illum odio expedita ipsam ratione nihil blanditiis sint quaerat quo laboriosam, dicta animi reiciendis
+              odit!
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum iusto dolorum placeat molestiae laborum qui
+              illum odio expedita ipsam ratione nihil blanditiis sint quaerat quo laboriosam, dicta animi reiciendis
+              odit!
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message own">
+          <div className="texts">
+            <img
+              src="https://media.istockphoto.com/id/1443562748/fr/photo/mignon-chat-gingembre.jpg?s=1024x1024&w=is&k=20&c=4GqVUsgCSR5s0CU2JF3cJ-2-ACDlU6WlHsjOthb7nkM="
+              alt=""
+            />
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum iusto dolorum placeat molestiae laborum qui
+              illum odio expedita ipsam ratione nihil blanditiis sint quaerat quo laboriosam, dicta animi reiciendis
+              odit!
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum iusto dolorum placeat molestiae laborum qui
+              illum odio expedita ipsam ratione nihil blanditiis sint quaerat quo laboriosam, dicta animi reiciendis
+              odit!
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum iusto dolorum placeat molestiae laborum qui
+              illum odio expedita ipsam ratione nihil blanditiis sint quaerat quo laboriosam, dicta animi reiciendis
+              odit!
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+      </div>
       <div className="bottom">
         <div className="icons">
           <img src="./img.png" alt="" />
