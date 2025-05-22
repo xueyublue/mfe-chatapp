@@ -157,6 +157,11 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+
+      &:hover {
+        background-color: #3766da;
+        transition: all ease-in-out 0.3s;
+      }
     }
   }
 }
