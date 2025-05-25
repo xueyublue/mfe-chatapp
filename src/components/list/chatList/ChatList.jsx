@@ -46,7 +46,7 @@ const ChatList = () => {
         <div className="item" key={item.chatId}>
           <img src="./avatar.png" alt="" />
           <div className="texts">
-            <span>Jane Doe</span>
+            <span>{item.user.username}</span>
             <p>{item.lastMessage}</p>
           </div>
         </div>
