@@ -30,6 +30,11 @@ const Login = () => {
         email: email,
         blocked: [],
       });
+      // save chat list
+      await setDoc(doc(db, "chatLists", res.user.uid), {
+        chats: [],
+      });
+      // save avatar
       toast.success("Account created successfully.");
     } catch (error) {
       console.log(error);
