@@ -12,19 +12,19 @@ const ChatList = () => {
   const { currentUser } = useUserStore();
 
   useEffect(() => {
-    const onsub = onSnapshot(doc(db, "chatLists", currentUser.id), async (res) => {
+    const onSub = onSnapshot(doc(db, "userChats", currentUser.id), async (res) => {
       const items = res.data().chats;
-      const promisses = items.map(async (item) => {
+      const promises = items.map(async (item) => {
         const docRef = doc(db, "users", item.receiverId);
         const docSnap = await getDoc(docRef);
         const user = docSnap.data();
         return { ...item, user };
       });
-      const chatData = await Promise.all(promisses);
+      const chatData = await Promise.all(promises);
       setChats(chatData.sort((a, b) => a.updatedAt - b.updatedAt));
     });
     return () => {
-      onsub();
+      onSub();
     };
   }, [currentUser.id]);
 

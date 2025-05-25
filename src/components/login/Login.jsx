@@ -9,11 +9,13 @@ import upload from "../../lib/upload";
 const Login = () => {
   const [avatar, setAvatar] = useState({ file: null, url: "" });
   const [loading, setLoading] = useState(false);
+
   const handleAvatar = (e) => {
     if (e.target.files[0]) {
       setAvatar({ file: e.target.files[0], url: URL.createObjectURL(e.target.files[0]) });
     }
   };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -28,6 +30,7 @@ const Login = () => {
       setLoading(false);
     }
   };
+
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -47,7 +50,7 @@ const Login = () => {
         blocked: [],
       });
       // save chat list
-      await setDoc(doc(db, "chatLists", res.user.uid), {
+      await setDoc(doc(db, "userChats", res.user.uid), {
         chats: [],
       });
       toast.success("Account created successfully.");
@@ -58,6 +61,7 @@ const Login = () => {
       setLoading(false);
     }
   };
+
   return (
     <div className="login">
       <div className="item">
