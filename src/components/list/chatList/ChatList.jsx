@@ -1,9 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./chatList.css";
 import AddUser from "./addUser/AddUser";
+import { useUserStore } from "./../../../lib/userStore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { db } from "../../../lib/firebase";
 
 const ChatList = () => {
+  const [chats, setChats] = useState([]);
   const [addMode, setAddMode] = useState(false);
+
+  const { currentUser } = useUserStore();
+
+  useEffect(() => {
+    const onsub = onSnapshot(doc(db, "chatLists", currentUser.id), async (res) => {
+      const items = res.data().chats;
+      const promisses = items.map(async (item) => {
+        const docRef = doc(db, "users", item.receiverId);
+        const docSnap = await getDoc(docRef);
+        const user = docSnap.data();
+        return { ...item, user };
+      });
+      const chatData = await Promise.all(promisses);
+      setChats(chatData.sort((a, b) => a.updatedAt - b.updatedAt));
+    });
+    return () => {
+      onsub();
+    };
+  }, [currentUser.id]);
+
   return (
     <div className="chatList">
       <div className="search">
@@ -18,27 +42,15 @@ const ChatList = () => {
           onClick={() => setAddMode((prev) => !prev)}
         />
       </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Jane Doe</span>
-          <p>Hello, are you there?</p>
+      {chats.map((item) => (
+        <div className="item" key={item.chatId}>
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <span>Jane Doe</span>
+            <p>{item.lastMessage}</p>
+          </div>
         </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Jane Doe</span>
-          <p>Go...</p>
-        </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Jane Doe</span>
-          <p>This is something that you should not know.</p>
-        </div>
-      </div>
+      ))}
       {addMode && <AddUser />}
     </div>
   );
